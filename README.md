@@ -79,27 +79,27 @@ The application has two primary user roles:
 ---
 
 ## 📁 Project Structure
+Of course. The indentation in your file tree was incorrect, making it look like most of the project was inside the `auth/` directory.
+
+Here is the corrected structure, showing the proper hierarchy for the project folders and files.
+
+```
 /pet-adoption
 ├── auth/
 │   ├── login.php
 │   ├── logout.php
 │   └── register.php
-│
 ├── config/
 │   └── db.php
-│
 ├── images/
 │   ├── background.jpg
 │   ├── adopted_background.jpg
 │   └── logo-transparent.png
-│
 ├── includes/
 │   ├── header.php
 │   └── footer.php
-│
 ├── uploads/
 │   └── (pet images)
-│
 ├── adopted.php
 ├── add_pet.php
 ├── dashboard.php
@@ -109,6 +109,7 @@ The application has two primary user roles:
 ├── index.php
 ├── manage_favorites.php
 └── view_pet.php
+```
 
 ## 👥 Team & Credits
 
