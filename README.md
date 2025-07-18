@@ -49,7 +49,7 @@ You need a local server environment like [XAMPP](https://www.apachefriends.org/i
 
 1.  **Clone the repo** (or download the source code).
     ```sh
-    git clone https://github.com/your-username/pet-adoption.git
+    git clone https://github.com/Darepen/PHP-Final-Project.git
     ```
 2.  **Place the project** in your local server's web directory (e.g., `C:\xampp\htdocs\pet-adoption`).
 
