@@ -160,7 +160,7 @@ if (session_status() == PHP_SESSION_NONE) {
             border-radius: 20px;
         }
         #heroCarousel .carousel-item {
-            height: 300px; /* Give all carousel items a fixed height */
+            height: 300px; 
         }
         #heroCarousel .hero-section,
         #heroCarousel .how-to-adopt-section,
@@ -224,7 +224,7 @@ if (session_status() == PHP_SESSION_NONE) {
             color: white;
         }
         
-        /* UPDATED: Carousel Controls & Indicators */
+        /* Carousel Controls & Indicators */
         #heroCarousel .carousel-control-prev,
         #heroCarousel .carousel-control-next,
         #heroCarousel .carousel-indicators {
@@ -251,7 +251,11 @@ if (session_status() == PHP_SESSION_NONE) {
             background-color: #f8f9fa;
             color: #343a40;
         }
+        /* UPDATED: Centering styles for the pet items */
         .top-pet-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
         .top-pet-item img {
