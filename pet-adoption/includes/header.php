@@ -248,7 +248,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
-                <img src="images/BPRV_Logo.png" alt="BPRV Adoption Center">
+                <img src="images/BPRV_Logo only.png" alt="BPRV Adoption Center">
                 <span class="brand-text">BPRV</span>
             </a>
 
