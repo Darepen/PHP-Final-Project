@@ -2,16 +2,12 @@
 require_once 'includes/header.php';
 require_once 'config/db.php';
 
-// Get the array of favorite pet IDs from the session, or an empty array if none exist.
 $favorite_ids = isset($_SESSION['favorites']) ? $_SESSION['favorites'] : [];
 $pets = [];
 
-// Only query the database if there are actual favorites to fetch.
 if (!empty($favorite_ids)) {
-    // Create the correct number of '?' placeholders for the SQL query.
     $placeholders = implode(',', array_fill(0, count($favorite_ids), '?'));
 
-    // SQL query to select all pet details for the favorited pets.
     $sql = "SELECT p.*, s.SpeciesName 
             FROM pets p 
             JOIN species s ON p.SpeciesID = s.SpeciesID 
@@ -19,8 +15,6 @@ if (!empty($favorite_ids)) {
     
     $stmt = $db->prepare($sql);
 
-    // Bind the favorite pet IDs to the prepared statement.
-    // The 'i' specifies that each parameter is an integer.
     $stmt->bind_param(str_repeat('i', count($favorite_ids)), ...$favorite_ids);
     
     $stmt->execute();
