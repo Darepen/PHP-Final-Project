@@ -111,22 +111,6 @@ if (session_status() == PHP_SESSION_NONE) {
             text-align: center;
         }
 
-        /* NEW: Style for the featured pet carousel slides */
-        .hero-section-featured {
-            background-size: cover;
-            background-position: center;
-            color: white;
-            min-height: 265px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-        }
-
         .pet-card {
             border: none;
             border-radius: 15px;
@@ -189,10 +173,9 @@ if (session_status() == PHP_SESSION_NONE) {
             min-height: 300px;
         }
         #heroCarousel .hero-section,
-        #heroCarousel .how-to-adopt-section,
-        #heroCarousel .hero-section-featured { /* Apply to all slides */
+        #heroCarousel .how-to-adopt-section {
             width: 100%;
-            height: 100%; /* Changed to fit carousel item height */
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -203,7 +186,7 @@ if (session_status() == PHP_SESSION_NONE) {
         }
         #heroCarousel .how-to-adopt-section {
             position: relative;
-            top: 0; /* Changed for better alignment */
+            top: 0;
         }
         /* --- Custom Modal Styles --- */
         .modal-overlay {
@@ -259,13 +242,13 @@ if (session_status() == PHP_SESSION_NONE) {
         /* --- Carousel Control Visibility & Color --- */
         #heroCarousel .carousel-control-prev,
         #heroCarousel .carousel-control-next {
-            opacity: 0; /* Make controls invisible by default */
-            transition: opacity 0.3s ease; /* Add a smooth fade transition */
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
         }
 
         #heroCarousel:hover .carousel-control-prev,
         #heroCarousel:hover .carousel-control-next {
-            opacity: 1; /* Make controls visible when hovering over the carousel */
+            opacity: 1; 
         }
 
         .carousel-control-prev-icon {
@@ -276,6 +259,32 @@ if (session_status() == PHP_SESSION_NONE) {
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236a0dad'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
         }
 
+        /* --- NEW: Most Viewed Pets Slide Styles --- */
+        .top-pet-slide-section {
+            background-color: #f8f9fa;
+            color: #343a40;
+            padding: 2rem 1rem;
+            border-radius: 20px;
+            min-height: 265px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .top-pet-item {
+            text-align: center;
+        }
+        .top-pet-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .top-pet-item a:hover img {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
