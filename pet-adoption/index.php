@@ -2,7 +2,7 @@
 require_once 'includes/header.php';
 require_once 'config/db.php';
 
-// --- UPDATED: Get Top 3 Most Viewed Pets with their ViewCount ---
+// Get Top 3 Most Viewed Pets with their ViewCount
 $sql_top_pets = "SELECT PetID, PetName, ImageURL, ViewCount FROM pets WHERE PetAvail = '1' ORDER BY ViewCount DESC LIMIT 3";
 $result_top_pets = $db->query($sql_top_pets);
 $top_pets = [];
@@ -11,7 +11,6 @@ if ($result_top_pets) {
         $top_pets[] = $row;
     }
 }
-// --- END UPDATE ---
 
 $species_filter = isset($_GET['species']) ? $_GET['species'] : '';
 $sql = "SELECT p.PetID, p.PetName, p.ImageURL, s.SpeciesName, p.gender, p.personality_tags 
@@ -39,7 +38,7 @@ $result = $stmt->get_result();
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     
-    <div class="carousel-inner" style="border-radius: 20px;">
+    <div class="carousel-inner">
         <div class="carousel-item active">
             <div class="hero-section">
                 <h1 class="display-4 fw-bold">Find Your Forever Friend</h1>
@@ -73,7 +72,7 @@ $result = $stmt->get_result();
         <div class="carousel-item">
             <div class="top-pet-slide-section">
                 <h2 class="mb-4 fw-bold" style="color: #6a0dad;">Most Viewed Pets of the Month</h2>
-                <div class="row justify-content-center">
+                <div class="row justify-content-evenly">
                     <?php if (!empty($top_pets)): ?>
                         <?php foreach ($top_pets as $top_pet): ?>
                             <div class="col-lg-3 col-md-4 top-pet-item">
@@ -96,7 +95,7 @@ $result = $stmt->get_result();
         </div>
     </div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
