@@ -3,9 +3,9 @@ require_once 'includes/header.php';
 require_once 'config/db.php';
 
 $species_filter = isset($_GET['species']) ? $_GET['species'] : '';
-$sql = "SELECT p.PetID, p.PetName, p.ImageURL, s.SpeciesName, p.gender, p.personality_tags 
-        FROM pets p 
-        JOIN species s ON p.SpeciesID = s.SpeciesID 
+$sql = "SELECT p.PetID, p.PetName, p.ImageURL, s.SpeciesName, p.gender, p.personality_tags
+        FROM pets p
+        JOIN species s ON p.SpeciesID = s.SpeciesID
         WHERE p.PetAvail = '1'";
 
 if ($species_filter !== '') {
@@ -123,36 +123,8 @@ require_once 'includes/footer.php';
 document.addEventListener('DOMContentLoaded', function () {
     const carouselElement = document.getElementById('heroCarousel');
     const carousel = new bootstrap.Carousel(carouselElement, {
-        interval: 7000, // How long each slide is shown
-        pause: false    // We handle pause manually
-    });
-
-    let resumeTimer;
-
-    // Function to start the 5-second countdown to resume
-    const scheduleResume = () => {
-        clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(() => {
-            carousel.cycle();
-        }, 5000); // Resume after 5 seconds of inactivity
-    };
-
-    // Pause when mouse is over the carousel
-    carouselElement.addEventListener('mouseenter', () => {
-        carousel.pause();
-        clearTimeout(resumeTimer);
-    });
-
-    // When mouse leaves, schedule the resume
-    carouselElement.addEventListener('mouseleave', scheduleResume);
-    
-    // When a user clicks a control, also pause and schedule a resume
-    const controls = carouselElement.querySelectorAll('.carousel-control-prev, .carousel-control-next, .carousel-indicators button');
-    controls.forEach(el => {
-        el.addEventListener('click', () => {
-            carousel.pause();
-            scheduleResume();
-        });
+        interval: 1000,
+        wrap: true
     });
 });
 </script>
