@@ -221,6 +221,27 @@ if (session_status() == PHP_SESSION_NONE) {
             background-color: #5a0b9a;
             color: white;
         }
+        
+        /* --- NEW: Carousel Control Visibility & Color --- */
+        #heroCarousel .carousel-control-prev,
+        #heroCarousel .carousel-control-next {
+            opacity: 0; /* Make controls invisible by default */
+            transition: opacity 0.3s ease; /* Add a smooth fade transition */
+        }
+
+        #heroCarousel:hover .carousel-control-prev,
+        #heroCarousel:hover .carousel-control-next {
+            opacity: 1; /* Make controls visible when hovering over the carousel */
+        }
+
+        .carousel-control-prev-icon {
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236a0dad'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+        }
+
+        .carousel-control-next-icon {
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236a0dad'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
     </style>
 </head>
 <body>
@@ -267,7 +288,8 @@ if (session_status() == PHP_SESSION_NONE) {
                 </ul>
             </div>
         </div>
-    </nav> <div class="container mt-4">
+    </nav>
+    <div class="container mt-4">
     <?php if (isset($_SESSION['feedback_message'])): ?>
         <div class="alert alert-<?php echo $_SESSION['feedback_message']['type']; ?> alert-dismissible fade show" role="alert">
             <?php echo $_SESSION['feedback_message']['text']; ?>
