@@ -2,7 +2,8 @@
 require_once 'includes/header.php';
 require_once 'config/db.php';
 
-$sql_top_pets = "SELECT PetID, PetName, ImageURL FROM pets WHERE PetAvail = '1' ORDER BY ViewCount DESC LIMIT 3";
+// --- UPDATED: Get Top 3 Most Viewed Pets with their ViewCount ---
+$sql_top_pets = "SELECT PetID, PetName, ImageURL, ViewCount FROM pets WHERE PetAvail = '1' ORDER BY ViewCount DESC LIMIT 3";
 $result_top_pets = $db->query($sql_top_pets);
 $top_pets = [];
 if ($result_top_pets) {
@@ -10,6 +11,7 @@ if ($result_top_pets) {
         $top_pets[] = $row;
     }
 }
+// --- END UPDATE ---
 
 $species_filter = isset($_GET['species']) ? $_GET['species'] : '';
 $sql = "SELECT p.PetID, p.PetName, p.ImageURL, s.SpeciesName, p.gender, p.personality_tags 
@@ -34,9 +36,7 @@ $result = $stmt->get_result();
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <?php foreach (array_keys($top_pets) as $index): ?>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="<?php echo $index + 2; ?>" aria-label="Slide <?php echo $index + 3; ?>"></button>
-        <?php endforeach; ?>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     
     <div class="carousel-inner" style="border-radius: 20px;">
@@ -70,15 +70,30 @@ $result = $stmt->get_result();
             </div>
         </div>
 
-        <?php foreach ($top_pets as $top_pet): ?>
-            <div class="carousel-item">
-                <div class="hero-section-featured" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?php echo htmlspecialchars($top_pet['ImageURL']); ?>');">
-                    <h5 class="mb-3"><span class="badge bg-warning">Most Viewed Pet</span></h5>
-                    <h1 class="display-4 fw-bold"><?php echo htmlspecialchars($top_pet['PetName']); ?></h1>
-                    <a href="view_pet.php?id=<?php echo $top_pet['PetID']; ?>" class="btn btn-light btn-lg mt-3">Click to View Profile</a>
+        <div class="carousel-item">
+            <div class="top-pet-slide-section">
+                <h2 class="mb-4 fw-bold" style="color: #6a0dad;">Most Viewed Pets of the Month</h2>
+                <div class="row justify-content-center">
+                    <?php if (!empty($top_pets)): ?>
+                        <?php foreach ($top_pets as $top_pet): ?>
+                            <div class="col-lg-3 col-md-4 top-pet-item">
+                                <a href="view_pet.php?id=<?php echo $top_pet['PetID']; ?>" class="text-decoration-none text-dark">
+                                    <img src="<?php echo htmlspecialchars($top_pet['ImageURL']); ?>" alt="<?php echo htmlspecialchars($top_pet['PetName']); ?>">
+                                    <h5 class="mt-3 mb-1 fw-bold"><?php echo htmlspecialchars($top_pet['PetName']); ?></h5>
+                                    <p class="mb-0">
+                                        <span class="badge bg-primary rounded-pill">
+                                            <i class="bi bi-eye-fill"></i> <?php echo htmlspecialchars($top_pet['ViewCount']); ?> Views
+                                        </span>
+                                    </p>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No featured pets at this time.</p>
+                    <?php endif; ?>
                 </div>
             </div>
-        <?php endforeach; ?>
+        </div>
     </div>
 
     <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
@@ -152,8 +167,8 @@ require_once 'includes/footer.php';
 document.addEventListener('DOMContentLoaded', function () {
     const carouselElement = document.getElementById('heroCarousel');
     const carousel = new bootstrap.Carousel(carouselElement, {
-        interval: 5000,
-        wrap: true
+        interval: 5000, 
+        wrap: true 
     });
 });
 </script>
