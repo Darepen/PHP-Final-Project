@@ -6,17 +6,17 @@ $favorite_ids = isset($_SESSION['favorites']) ? $_SESSION['favorites'] : [];
 $pets = [];
 
 if (!empty($favorite_ids)) {
+
     $placeholders = implode(',', array_fill(0, count($favorite_ids), '?'));
 
-    $sql = "SELECT p.*, s.SpeciesName 
-            FROM pets p 
-            JOIN species s ON p.SpeciesID = s.SpeciesID 
+    $sql = "SELECT p.*, s.SpeciesName
+            FROM pets p
+            JOIN species s ON p.SpeciesID = s.SpeciesID
             WHERE p.PetID IN ($placeholders)";
-    
     $stmt = $db->prepare($sql);
 
     $stmt->bind_param(str_repeat('i', count($favorite_ids)), ...$favorite_ids);
-    
+
     $stmt->execute();
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
@@ -26,7 +26,7 @@ if (!empty($favorite_ids)) {
 }
 ?>
 
-<div class="hero-section">
+<div class="hero-section-carrier">
     <h1 class="display-4 fw-bold">My Adoption Carrier</h1>
     <p class="lead">These are the lovely pets you're interested in!</p>
 </div>
