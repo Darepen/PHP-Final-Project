@@ -94,6 +94,7 @@ if (session_status() == PHP_SESSION_NONE) {
             margin-bottom: 40px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
+        
         .hero-section-carrier {
             background-image: 
                 linear-gradient(rgba(69, 26, 110, 0.4), rgba(69, 26, 110, 0.4)), 
@@ -109,6 +110,23 @@ if (session_status() == PHP_SESSION_NONE) {
             border-radius: 20px;
             text-align: center;
         }
+
+        /* NEW: Style for the featured pet carousel slides */
+        .hero-section-featured {
+            background-size: cover;
+            background-position: center;
+            color: white;
+            min-height: 265px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
         .pet-card {
             border: none;
             border-radius: 15px;
@@ -171,9 +189,10 @@ if (session_status() == PHP_SESSION_NONE) {
             min-height: 300px;
         }
         #heroCarousel .hero-section,
-        #heroCarousel .how-to-adopt-section {
+        #heroCarousel .how-to-adopt-section,
+        #heroCarousel .hero-section-featured { /* Apply to all slides */
             width: 100%;
-            height: 200%;
+            height: 100%; /* Changed to fit carousel item height */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -184,7 +203,7 @@ if (session_status() == PHP_SESSION_NONE) {
         }
         #heroCarousel .how-to-adopt-section {
             position: relative;
-            top: -15px;
+            top: 0; /* Changed for better alignment */
         }
         /* --- Custom Modal Styles --- */
         .modal-overlay {
@@ -236,15 +255,17 @@ if (session_status() == PHP_SESSION_NONE) {
             background-color: #5a0b9a;
             color: white;
         }
+        
+        /* --- Carousel Control Visibility & Color --- */
         #heroCarousel .carousel-control-prev,
         #heroCarousel .carousel-control-next {
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            opacity: 0; /* Make controls invisible by default */
+            transition: opacity 0.3s ease; /* Add a smooth fade transition */
         }
 
         #heroCarousel:hover .carousel-control-prev,
         #heroCarousel:hover .carousel-control-next {
-            opacity: 1;
+            opacity: 1; /* Make controls visible when hovering over the carousel */
         }
 
         .carousel-control-prev-icon {
@@ -261,7 +282,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
-                <img src="images/BPRV_Logo only.png" alt="BPRV Adoption Center">
+                <img src="images/BPRV_Logo.png" alt="BPRV Adoption Center">
                 <span class="brand-text">BPRV</span>
             </a>
 
