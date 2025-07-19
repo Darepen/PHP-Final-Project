@@ -2,17 +2,23 @@
 require_once 'includes/header.php';
 require_once 'config/db.php';
 
+// Check if a pet ID has been provided in the URL.
 if (!isset($_GET['id'])) {
     echo "No pet specified.";
     exit;
 }
 $pet_id = $_GET['id'];
-// Increment view count
+
+// Determine the return URL. Use the referring page if available, otherwise default to index.php.
+$back_url = isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : 'index.php';
+
+// Increment the view count for this pet.
 $stmt_view = $db->prepare("UPDATE pets SET ViewCount = ViewCount + 1 WHERE PetID = ?");
 $stmt_view->bind_param("i", $pet_id);
 $stmt_view->execute();
 $stmt_view->close();
 
+// SQL query to get all details for the specified pet.
 $sql = "
     SELECT p.*, s.SpeciesName, 
            COALESCE(db.BreedName, cb.BreedName) AS BreedName,
@@ -35,6 +41,8 @@ if (!$pet) {
     echo "Pet not found.";
     exit;
 }
+
+// Check if the current pet is in the user's favorites list.
 $is_favorited = isset($_SESSION['favorites']) && in_array($pet['PetID'], $_SESSION['favorites']);
 ?>
 
@@ -42,7 +50,12 @@ $is_favorited = isset($_SESSION['favorites']) && in_array($pet['PetID'], $_SESSI
     <div class="col-md-6 mb-4">
         <img src="<?php echo htmlspecialchars($pet['ImageURL']); ?>" class="img-fluid rounded shadow-sm" alt="<?php echo htmlspecialchars($pet['PetName']); ?>">
     </div>
+
     <div class="col-md-6">
+        <a href="<?php echo $back_url; ?>" class="text-dark fw-bold fs-5 text-decoration-none d-inline-block mb-2">
+            <i class="bi bi-arrow-left-circle"></i> Go Back
+        </a>
+        
         <h1 class="display-5 fw-bold" style="color: #5a189a;"><?php echo htmlspecialchars($pet['PetName']); ?></h1>
         <p class="lead text-muted"><?php echo htmlspecialchars($pet['BreedName']); ?></p>
 
