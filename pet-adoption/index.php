@@ -165,8 +165,8 @@ require_once 'includes/footer.php';
 document.addEventListener('DOMContentLoaded', function () {
     const carouselElement = document.getElementById('heroCarousel');
     const carousel = new bootstrap.Carousel(carouselElement, {
-        interval: 5000, 
-        wrap: true 
+        interval: 3143,
+        wrap: true
     });
 });
 </script>
