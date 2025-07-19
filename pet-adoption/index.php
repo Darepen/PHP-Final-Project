@@ -2,10 +2,19 @@
 require_once 'includes/header.php';
 require_once 'config/db.php';
 
+$sql_top_pets = "SELECT PetID, PetName, ImageURL FROM pets WHERE PetAvail = '1' ORDER BY ViewCount DESC LIMIT 3";
+$result_top_pets = $db->query($sql_top_pets);
+$top_pets = [];
+if ($result_top_pets) {
+    while ($row = $result_top_pets->fetch_assoc()) {
+        $top_pets[] = $row;
+    }
+}
+
 $species_filter = isset($_GET['species']) ? $_GET['species'] : '';
-$sql = "SELECT p.PetID, p.PetName, p.ImageURL, s.SpeciesName, p.gender, p.personality_tags
-        FROM pets p
-        JOIN species s ON p.SpeciesID = s.SpeciesID
+$sql = "SELECT p.PetID, p.PetName, p.ImageURL, s.SpeciesName, p.gender, p.personality_tags 
+        FROM pets p 
+        JOIN species s ON p.SpeciesID = s.SpeciesID 
         WHERE p.PetAvail = '1'";
 
 if ($species_filter !== '') {
@@ -22,6 +31,14 @@ $result = $stmt->get_result();
 ?>
 
 <div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <?php foreach (array_keys($top_pets) as $index): ?>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="<?php echo $index + 2; ?>" aria-label="Slide <?php echo $index + 3; ?>"></button>
+        <?php endforeach; ?>
+    </div>
+    
     <div class="carousel-inner" style="border-radius: 20px;">
         <div class="carousel-item active">
             <div class="hero-section">
@@ -29,6 +46,7 @@ $result = $stmt->get_result();
                 <p class="lead">Every pet deserves a loving home. Your new best friend is waiting for you.</p>
             </div>
         </div>
+
         <div class="carousel-item">
             <div class="how-to-adopt-section text-center">
                 <h2 class="mb-4" style="color: #6a0dad; font-weight: 600;">Our Adoption Process</h2>
@@ -51,7 +69,18 @@ $result = $stmt->get_result();
                 </div>
             </div>
         </div>
+
+        <?php foreach ($top_pets as $top_pet): ?>
+            <div class="carousel-item">
+                <div class="hero-section-featured" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?php echo htmlspecialchars($top_pet['ImageURL']); ?>');">
+                    <h5 class="mb-3"><span class="badge bg-warning">Most Viewed Pet</span></h5>
+                    <h1 class="display-4 fw-bold"><?php echo htmlspecialchars($top_pet['PetName']); ?></h1>
+                    <a href="view_pet.php?id=<?php echo $top_pet['PetID']; ?>" class="btn btn-light btn-lg mt-3">Click to View Profile</a>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
+
     <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -123,7 +152,7 @@ require_once 'includes/footer.php';
 document.addEventListener('DOMContentLoaded', function () {
     const carouselElement = document.getElementById('heroCarousel');
     const carousel = new bootstrap.Carousel(carouselElement, {
-        interval: 3000,
+        interval: 5000,
         wrap: true
     });
 });
