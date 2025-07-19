@@ -65,50 +65,38 @@ if (session_status() == PHP_SESSION_NONE) {
         .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.15);
         }
+        
+        /* Standardized hero section styles */
+        .hero-section, .hero-section-success, .hero-section-carrier {
+            background-size: cover;      
+            background-position: center; 
+            color: white;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+        }
         .hero-section {
             background-image: 
                 linear-gradient(rgba(69, 26, 110, 0.4), rgba(69, 26, 110, 0.4)), 
                 url('images/background.jpg');
-            background-size: cover;      
-            background-position: center; 
-            color: white;
-            min-height: 265px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
             margin-bottom: 40px;
         }
         .hero-section-success {
             background-image:
                 linear-gradient(rgba(100, 140, 108, 0.6), rgba(100, 140, 108, 0.6)), 
                 url('images/adopted_background.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 72px 20px;
-            border-radius: 20px;
-            text-align: center;
             margin-bottom: 40px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
-        
         .hero-section-carrier {
             background-image: 
                 linear-gradient(rgba(69, 26, 110, 0.4), rgba(69, 26, 110, 0.4)), 
                 url('images/background2.jpg');
-            background-size: cover;      
-            background-position: center; 
-            color: white;
-            min-height: 265px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
         }
 
         .pet-card {
@@ -151,9 +139,7 @@ if (session_status() == PHP_SESSION_NONE) {
         }
         .how-to-adopt-section {
             background-color: #fff;
-            padding: 50px 20px;
             border-radius: 20px;
-            margin-top: 60px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .step-circle {
@@ -171,9 +157,14 @@ if (session_status() == PHP_SESSION_NONE) {
         }
         #heroCarousel .carousel-inner {
             min-height: 300px;
+            border-radius: 20px;
+        }
+        #heroCarousel .carousel-item {
+            height: 300px; /* Give all carousel items a fixed height */
         }
         #heroCarousel .hero-section,
-        #heroCarousel .how-to-adopt-section {
+        #heroCarousel .how-to-adopt-section,
+        #heroCarousel .top-pet-slide-section {
             width: 100%;
             height: 100%;
             display: flex;
@@ -181,28 +172,25 @@ if (session_status() == PHP_SESSION_NONE) {
             justify-content: center;
             align-items: center;
             margin: 0;
+            padding: 2rem;
             box-shadow: none;
-            padding: 20px;
+            border-radius: 20px;
         }
-        #heroCarousel .how-to-adopt-section {
-            position: relative;
-            top: 0;
-        }
-        /* --- Custom Modal Styles --- */
+        
+        /* Custom Modal Styles */
         .modal-overlay {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1055; /* Sit on top */
+            display: none; 
+            position: fixed; 
+            z-index: 1055; 
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.5);
             align-items: center;
             justify-content: center;
         }
-
         .modal-content {
             background-color: #fefefe;
             margin: auto;
@@ -214,13 +202,11 @@ if (session_status() == PHP_SESSION_NONE) {
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-
         .modal-title {
             color: #6a0dad;
             font-weight: 700;
             margin-bottom: 15px;
         }
-
         .btn-modal-purple {
             background-color: #6a0dad;
             color: white;
@@ -233,51 +219,46 @@ if (session_status() == PHP_SESSION_NONE) {
             margin-top: 15px;
             transition: background-color 0.2s ease;
         }
-
         .btn-modal-purple:hover {
             background-color: #5a0b9a;
             color: white;
         }
         
-        /* --- Carousel Control Visibility & Color --- */
+        /* UPDATED: Carousel Controls & Indicators */
         #heroCarousel .carousel-control-prev,
-        #heroCarousel .carousel-control-next {
+        #heroCarousel .carousel-control-next,
+        #heroCarousel .carousel-indicators {
             opacity: 0; 
             transition: opacity 0.3s ease; 
         }
-
         #heroCarousel:hover .carousel-control-prev,
-        #heroCarousel:hover .carousel-control-next {
+        #heroCarousel:hover .carousel-control-next,
+        #heroCarousel:hover .carousel-indicators {
             opacity: 1; 
         }
-
+        .carousel-indicators button {
+            background-color: #6a0dad !important;
+        }
         .carousel-control-prev-icon {
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236a0dad'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
         }
-
         .carousel-control-next-icon {
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236a0dad'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
         }
 
-        /* --- NEW: Most Viewed Pets Slide Styles --- */
+        /* Most Viewed Pets Slide Styles */
         .top-pet-slide-section {
             background-color: #f8f9fa;
             color: #343a40;
-            padding: 2rem 1rem;
-            border-radius: 20px;
-            min-height: 265px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
         .top-pet-item {
             text-align: center;
         }
         .top-pet-item img {
-            width: 100px;
-            height: 100px;
+            width: 120px; 
+            height: 120px; 
             object-fit: cover;
-            border-radius: 50%;
+            border-radius: 15px; 
             border: 4px solid #fff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
