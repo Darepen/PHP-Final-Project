@@ -1,5 +1,6 @@
 <?php
-
+// Determine the return URL, default to index.php if not available
+$back_url = isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : 'index.php';
 $hostname   = "localhost";
 $username   = "root";  
 $password   = "";
