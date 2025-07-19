@@ -2,7 +2,6 @@
 require_once 'includes/header.php';
 require_once 'config/db.php';
 
-// Get Top 3 Most Viewed Pets with their ViewCount
 $sql_top_pets = "SELECT PetID, PetName, ImageURL, ViewCount FROM pets WHERE PetAvail = '1' ORDER BY ViewCount DESC LIMIT 3";
 $result_top_pets = $db->query($sql_top_pets);
 $top_pets = [];

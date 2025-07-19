@@ -40,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["loggedin"] = true;
                         $_SESSION["id"] = $row['id'];
                         $_SESSION["username"] = $row['username'];
-                        // Load user's favorites from the database into the session
                         $_SESSION['favorites'] = [];
                         $user_id = $_SESSION['id'];
                         $sql_favs = "SELECT PetID FROM user_favorites WHERE UserID = ?";

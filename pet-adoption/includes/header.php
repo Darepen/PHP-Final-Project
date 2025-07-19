@@ -245,13 +245,10 @@ if (session_status() == PHP_SESSION_NONE) {
         .carousel-control-next-icon {
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236a0dad'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
         }
-
-        /* Most Viewed Pets Slide Styles */
         .top-pet-slide-section {
             background-color: #f8f9fa;
             color: #343a40;
         }
-        /* UPDATED: Centering styles for the pet items */
         .top-pet-item {
             display: flex;
             flex-direction: column;
