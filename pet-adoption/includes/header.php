@@ -323,7 +323,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <?php echo $_SESSION['feedback_message']['text']; ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <?php unset($_SESSION['feedback_message']); // Clear the message after displaying it ?>
+        <?php unset($_SESSION['feedback_message']);?>
     <?php endif; ?>
     </div>
     <div class="container mt-5">
